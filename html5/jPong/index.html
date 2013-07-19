@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>jPong</title>
+		<script type="text/javascript" src="utils.js" ></script>
+        <link href='http://fonts.googleapis.com/css?family=Press+Start+2P&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="media.css">
+	</head>
+
+	<body onResize="resize_canvas()">
+		<script type="text/javascript" src="jPong.js" defer></script>
+		<div id="frames"></div>
+        <canvas id="canvas"></canvas>
+        <div id="score">
+            <div id="p1Container" class="left">
+                <span class="title">Player 1</span>
+        	   <div id="player1" class="player"></div>
+            </div>
+            <div id="p2Container" class="right">
+                <span class="title">Player 2</span>
+                <div id="player2" class="player"></div>
+            </div>
+        </div>
+        
+	</body>
+
+</html>

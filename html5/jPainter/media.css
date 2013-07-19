@@ -1,0 +1,43 @@
+#canvas {
+    border:white 1px solid;
+    background-color: black;
+    display: block;
+    margin: 0 auto;
+    
+}
+#frames{
+    color:white;
+}
+body{
+    background-color: white;
+}
+
+.player{
+    color:black;
+    margin: 20px;
+    font-size: 200px;
+    
+}
+#score{
+    font-family: 'Press Start 2P', cursive;
+    margin-left:20px;
+    width: 800px;
+    margin: 10px auto 0 auto;
+    overflow: auto;
+}
+.left{
+    display: inline-block;
+    float: left;
+}
+
+.right{
+    display: inline-block;
+    float: right;
+}
+
+.title{
+    font-size: 30px;
+    text-align:center;
+    display:block;
+    
+}

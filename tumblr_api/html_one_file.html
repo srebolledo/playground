@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>Tumblr infinite</title>
+		<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){function n(e){var t=$("div[style~='block;']");var n=150;if(e=="left"){if(typeof t.prev()[0]!="undefined"){t.animate({opacity:"hide"},n);t.prev().animate({opacity:"show"},n);t.prev().css("display","block");t.css("display","none")}}if(e=="right"){if(typeof t.next()[0]!="undefined"){t.animate({opacity:"hide"},n);t.next().animate({opacity:"show"},n);t.css("display","none");t.next().css("display","block")}}}function r(){var e=$("div.images_image");e.css("display","none");$(e[0]).css("display","block")}var e=0;var t=function(e,t,n,r,i){r="api_key="+r;i=typeof i=="undefined"?0:i;$.getJSON(e+"/"+t+"/"+n+"?"+r+"&offset="+20*i+"&type=photo"+"&jsonp=?",{format:"json"}).done(function(e){var t=e.response.posts;var n={};$.each(t,function(e,t){for(var r in t.photos){var i=null;for(var s in t.photos[r].alt_sizes){if(t.photos[r].alt_sizes[s].url.match(/_500\./g)!==null){i=t.photos[r].alt_sizes[s];break}if(t.photos[r].alt_sizes[s].url.match(/_400\./g)!==null){i=t.photos[r].alt_sizes[s];break}if(t.photos[r].alt_sizes[s].url.match(/_250\./g)!==null){i=t.photos[r].alt_sizes[s];break}}if(i!==null){i["post_url"]=t.post_url;i["source_title"]=t.source_title;i["caption"]=t.caption;i["id"]=t.id;if(typeof n[i.id]=="undefined")n[i.id]=[];n[i.id].push(i)}}});var r=0;console.log(n);for(var s in n){var o=n[s];var u=n[s][0];var a="none";if(i===0&&r===0)a="block";r++;if($("#"+u.id).length===0)$("<div>").attr("id",u.id).appendTo("#images").css("display",a).addClass("images_image");if($("#"+u.id+"_images").length===0)$("<div>").attr("id",u.id+"_images").appendTo("#"+u.id);for(var f in o)$("<img/>").attr("src",o[f].url).attr("width",o.width).attr("height",o[f].height).appendTo("#"+o[f].id+"_images").wrap("<a href='"+o[f].post_url+"'>");if($("#"+u.id+"_title").length===0)$("<div>").attr("id",u.id+"_title").appendTo("#"+u.id).text(u.caption).addClass("image_title")}})};var i="http://api.tumblr.com/v2/blog";var s="www.jaidefinichon.com";var o="fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4";t(i,s,"posts",o,e);$(window).scroll(function(){if($(window).scrollTop()+screen.height>=$(document).height()-100){e=e+1;t(i,s,"posts",o,e)}});$("#left, #right").click(function(r){var u=$("div[style~='block;']").first();if(u.nextAll().length<5){e=e+1;t(i,s,"posts",o,e)}n(this.id)});$(document).keydown(function(u){var a=$("div[style~='block;']").first();if(a.nextAll().length<5){e=e+1;t(i,s,"posts",o,e)}switch(u.which){case 37:n("left");break;case 39:n("right");break;case 33:r();break}})})
+		</script>
+		<style>
+			body{height:100%}
+			img{background-color:gray;display:block;margin:0 auto;padding:20px}
+			.image_title{text-align:center}
+			.images_image{max-width:700px;margin:0 auto}
+			#left{display:table;height:100%;width:100px;font-size:40px;float:left;padding-left:100px}
+			#right{padding-right:100px;text-align:right;display:table;float:right;height:100%;width:100px;font-size:40px}
+			.valign{display:table-cell;vertical-align:middle}
+			#left:hover,#right:hover{font-size:100px;background-color:#DFDFDF;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+		</style>
+	</head>
+	<body>
+		<div id="numPhotos"></div>
+		<div id="left"><span class="valign">&lt;</span></div>
+		<div id="right"><span class="valign">&gt;</span></div>
+		<div id="images">
+		</div>
+		
+	</body>
+</html>
